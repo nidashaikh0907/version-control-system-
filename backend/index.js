@@ -25,14 +25,16 @@ yargs(hideBin(process.argv))
   )
   .command(
     "commit <message>",
-    "Commited Successfully",
+    "Create a commit",
     (yargs) => {
       yargs.positional("message", {
         describe: "commit message",
         type: "string",
       });
     },
-    commitRepo,
+   (argv)=>{
+      commitRepo(argv.message);
+    }
   )
   .command("push", "push commit to s3", {}, pushRepo)
   .command("pull", "pull commit to s3", {}, pullRepo)
