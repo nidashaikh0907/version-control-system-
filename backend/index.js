@@ -18,6 +18,7 @@ const { commitRepo } = require("./controllers/commit.js");
 const { pushRepo } = require("./controllers/push.js");
 const { pullRepo } = require("./controllers/pull.js");
 const { revertRepo } = require("./controllers/revert.js");
+const userRouter = require("./routes/user.router.js");
 
 dotenv.config(); //can access .env values using process.env
 
@@ -86,10 +87,9 @@ function startServer() {
       console.error("Error connecting to MongoDB:", err);
     });
 
-
   app.use(cors({ origin: "*" })); //allow frontend to access backend api from any origin
 
-  app.use("/",mainRouter);
+  app.use("/", mainRouter);
   let user = "test";
   const httpServer = http.createServer(app); //create a http server using express app
 
