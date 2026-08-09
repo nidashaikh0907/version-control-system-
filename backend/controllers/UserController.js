@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken"); //gives us a token for user login
 const bcrypt = require("bcryptjs"); //encrypt our password
 const { MongoClient } = require("mongodb");
 const dotenv = require("dotenv");
+var ObjectId = require("mongodb").ObjectId;
 
 dotenv.config();
 const url = process.env.MONGODB_URL;
@@ -16,10 +17,6 @@ async function connectClient() {
   }
 }
 
-const getAllusers = (req, res) => {
-  res.send("All user fetched");
-};
-
 async function signup(req, res) {
   const { username, password, email } = req.body;
   console.log(req.body);
@@ -30,8 +27,9 @@ async function signup(req, res) {
 
     const user = await usersCollection.findOne({ username }); //find if username exists
     if (user) {
-      return res.status(400).json({ 
-        message: "User with this username exists" }); //if exists then send status code 400
+      return res.status(400).json({
+        message: "User with this username exists",
+      }); //if exists then send status code 400
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -57,33 +55,85 @@ async function signup(req, res) {
     );
     res.json({ token });
   } catch (err) {
-    console.error("error during signup:", err);
+    console.error("error during signup:", err.message);
     res.status(500).json({ message: "Server Error" });
   }
 }
 
-const login = (req, res) => {
-  const{email,password}=req.body;
-try{
-  await connectClient();
-  const db=client.db("githubclone");
-  const userCollection=db.collection("user");
-  const currUser=await userCollection.findOne({username});
-  if(currUser){
-    res.status(400).json({message:"User with this user name exists"});
+async function login(req, res) {
+  const { email, password } = req.body;
+  try {
+    await connectClient();
+    const db = client.db("githubclone");
+    const userCollection = db.collection("users");
+    const currUser = await userCollection.findOne({ email });
+
+    if (!currUser) {
+      res.status(400).json({ message: "Invalid Credentials" });
+    }
+
+    const isMatch = await bcrypt.compare(password, currUser.password); //check actual and current password
+    if (!isMatch) {
+      res.status(400).json({ message: "Invalid Credentials" });
+    }
+
+    const token = jwt.sign({ id: currUser._id }, process.env.JWT_SECRET_KEY, {
+      expiresIn: "1h",
+    });
+    res.json({ token, userId: currUser._id });
+  } catch (err) {
+    console.error("error during login in:", err.message);
+    res.status(500).send("Server error!");
   }
 }
-};
 
 // crud operation
 
-const getUserProfile = (req, res) => {
-  res.send("profile fetched");
-};
+async function getAllusers(req, res) {
+  try {
+    await connectClient();
+    const db = client.db("githubclone");
+    const userCollection = db.collection("users");
 
-const updateUserProfile = (req, res) => {
-  res.send("profile updated");
-};
+    const users = await userCollection.find({}).toArray(); //converted to array
+    res.json(users);
+  } catch (err) {
+    console.error("error during fetching:", err.message);
+    res.status(500).send("Server error!");
+  }
+}
+
+async function getUserProfile(req, res) {
+  const currentId = req.params.id;
+  try {
+    await connectClient();
+    const db = client.db("githubclone");
+    const userCollection = db.collection("users");
+
+    const user = await userCollection.findOne({
+      _id: new ObjectId(currentId)//convert into mongodb object id
+    });
+    if (!user) {
+      await res.status(400).json({ message: "User by this id not found" });
+    }
+    res.send(user);
+  } catch (err) {
+    console.error("error during fetching", err.message);
+    res.status(500).send("server error!");
+  }
+}
+
+async function updateUserProfile(req, res) {
+ const currentId=req.params.id;
+ const {email,password}=req.body;
+ try{
+ let upadateEmail={email};
+ 
+ }catch (err) {
+    console.error("error during fetching", err.message);
+    res.status(500).send("server error!");
+  }
+}
 
 const deleteUserProfile = (req, res) => {
   res.send("profile deleted");
