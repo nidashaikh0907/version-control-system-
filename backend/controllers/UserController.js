@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken"); //gives us a token for user login
 const bcrypt = require("bcryptjs"); //encrypt our password
-const { MongoClient } = require("mongodb");
+const { MongoClient, ReturnDocument } = require("mongodb");
 const dotenv = require("dotenv");
 var ObjectId = require("mongodb").ObjectId;
 
@@ -49,7 +49,7 @@ async function signup(req, res) {
 
     const token = jwt.sign(
       //create a token by each user id
-      { id: result.insertId },
+      { id: result.insertedId },
       process.env.JWT_SECRET_KEY,
       { expiresIn: "1h" },
     );
@@ -69,12 +69,12 @@ async function login(req, res) {
     const currUser = await userCollection.findOne({ email });
 
     if (!currUser) {
-      res.status(400).json({ message: "Invalid Credentials" });
+      return res.status(400).json({ message: "Invalid Credentials" });
     }
 
     const isMatch = await bcrypt.compare(password, currUser.password); //check actual and current password
     if (!isMatch) {
-      res.status(400).json({ message: "Invalid Credentials" });
+      return res.status(400).json({ message: "Invalid Credentials" });
     }
 
     const token = jwt.sign({ id: currUser._id }, process.env.JWT_SECRET_KEY, {
@@ -111,10 +111,10 @@ async function getUserProfile(req, res) {
     const userCollection = db.collection("users");
 
     const user = await userCollection.findOne({
-      _id: new ObjectId(currentId)//convert into mongodb object id
+      _id: new ObjectId(currentId), //convert into mongodb object id
     });
     if (!user) {
-      await res.status(400).json({ message: "User by this id not found" });
+      return res.status(400).json({ message: "User by this id not found" });
     }
     res.send(user);
   } catch (err) {
@@ -124,20 +124,53 @@ async function getUserProfile(req, res) {
 }
 
 async function updateUserProfile(req, res) {
- const currentId=req.params.id;
- const {email,password}=req.body;
- try{
- let upadateEmail={email};
- 
- }catch (err) {
+  const currentId = req.params.id;
+  const { email, password } = req.body;
+  try {
+    await connectClient();
+    const db = client.db("githubclone");
+    const userCollection = db.collection("users");
+
+    let updateFields = { email };
+    if (password) {
+      const salt = await bcrypt.genSalt(10);
+      const hashPassword = await bcrypt.hash(password, salt);
+      updateFields.password = hashPassword;
+    }
+    const result = await userCollection.findOneAndUpdate(
+      { _id: new ObjectId(currentId) },
+      { $set: updateFields }, //set the updated email and password
+      { returnDocument: "after" }, //return result after values have been updated
+    );
+    if (!result.value) {
+      return res.status(400).json({ message: "User not found!" });
+    }
+    res.json(result.value);
+  } catch (err) {
     console.error("error during fetching", err.message);
     res.status(500).send("server error!");
   }
 }
 
-const deleteUserProfile = (req, res) => {
-  res.send("profile deleted");
-};
+async function deleteUserProfile(req, res) {
+  const currentId = req.params.id;
+  try {
+    await connectClient();
+    const db = client.db("githubclone");
+    const userCollection = db.collection("users");
+    const result = await userCollection.deleteOne({
+      _id: new ObjectId(currentId), //find the id and delete
+    });
+    if (result.deletedCount == 0) {
+      //if deletedCount is==0 then user not deletedd
+      return res.status(400).json({ message: "User not found!" });
+    }
+    res.json({ message: "User Profile Deleted!" });
+  } catch (err) {
+    console.error("error during fetching", err.message);
+    res.status(500).send("server error!");
+  }
+}
 
 //All functionality exported below
 module.exports = {
