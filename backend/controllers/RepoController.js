@@ -53,7 +53,7 @@ async function fetchedRepositoryById(req, res) {
       .populate("issue");
 
     if (!repository) {
-      return res.status(400).json({ message: "Repository Do Not Exists!" });
+      return res.status(404).json({ message: "Repository Do Not Exists!" });
     }
     res.json(repository);
   } catch (err) {
@@ -71,7 +71,7 @@ async function fetchedRepositoryByName(req, res) {
 
     if (!repositoryByName) {
       return res
-        .status(400)
+        .status(404)
         .json({ message: "Repository By This Name Do Not Exists!" });
     }
     res.json(repositoryByName);
@@ -89,7 +89,7 @@ async function fetchedRepositoryForCurrentUser(req, res) {
     if (!repositories || repositories.length == 0) {
       return res.status(404).json({ error: "User Repositories not found" });
     }
-    res.json({ message: "Repository found!", repositories });
+    res.json({ message: "Repository found!" }, repositories);
   } catch (err) {
     console.error("error during fetching user repositories:", err.message);
     res.status(500).send("server error!");
@@ -150,7 +150,7 @@ async function deleteRepository(req, res) {
   try {
     const Repository = await Repository.findByIdAndDelete(id);
     if (!Repository) {
-      return res.status(400).json({ message: "Repository not found!" });
+      return res.status(404).json({ message: "Repository not found!" });
     }
     res.json({ message: "Repository Deleted Successfully" });
   } catch (err) {
@@ -165,7 +165,7 @@ module.exports = {
   fetchedRepositoryByName,
   fetchedRepositoryById,
   fetchedRepositoryForCurrentUser,
-  updateRepository,
+  updateRepositoryById,
   toogleVisibilityById,
   deleteRepository,
 };
