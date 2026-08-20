@@ -13,17 +13,17 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-  const [currentUser, setcurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
   useEffect(() => {
     const userId = localStorage.getItem("userId");
     if (userId) {
-      setcurrentUser(userId);
+      setCurrentUser(userId);
     }
   }, []);
 
   const value = {
     currentUser,
-    setcurrentUser,
+    setCurrentUser,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

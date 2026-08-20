@@ -22,5 +22,8 @@ const IssueSchema = new Schema({
   },
 });
 
-const Issue=mongoose.model("Issue",IssueSchema);
-module.exports= Issue; 
+const Issue =
+  mongoose.models.Issue ||
+  mongoose.model("Issue", IssueSchema);
+
+module.exports = Issue;

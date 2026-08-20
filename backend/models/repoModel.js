@@ -21,7 +21,7 @@ const RepositorySchema = new Schema({
   owner: {
     type: Schema.Types.ObjectId,
     ref: "User",
-    requird: true,
+    required: true,
   },
   issue: [
     {
@@ -31,5 +31,8 @@ const RepositorySchema = new Schema({
   ],
 });
 
-const Repository = mongoose.model("Repository", RepositorySchema);
-module.exports= Repository;
+const Repository =
+  mongoose.models.Repository ||
+  mongoose.model("Repository", RepositorySchema);
+
+module.exports = Repository;
