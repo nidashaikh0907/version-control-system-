@@ -1,0 +1,37 @@
+.profile-option{
+    display:flex;
+    flex-direction:row;
+    gap: 30px;
+   align-items: center;
+}
+
+.profile-option h3{
+    display: flex;
+    align-items:center;
+    gap: 8px;
+    margin: 0;
+}
+
+.profile-option h3:hover{
+    text-decoration: underline;
+    
+}
+
+.profile-icon img {
+    height:9rem;
+    border-radius: 100%;
+    margin-left: 2rem;
+}
+
+.profile-icon h3{
+    margin-left: 3.5rem
+}
+
+.profile-icon button{
+    margin-left: 3rem
+}
+
+.profile-update{
+    display: flex;
+    margin-left:1.5rem;
+}
