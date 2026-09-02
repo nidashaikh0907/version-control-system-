@@ -20,10 +20,13 @@ const IssueSchema = new Schema({
     ref: "Repository",
     required: true,
   },
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
 });
 
-const Issue =
-  mongoose.models.Issue ||
-  mongoose.model("Issue", IssueSchema);
+const Issue = mongoose.models.Issue || mongoose.model("Issue", IssueSchema);
 
 module.exports = Issue;

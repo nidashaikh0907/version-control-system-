@@ -6,6 +6,10 @@ import Dashboard from "./components/dashboard/Dashboard";
 import Profile from "./components/user/Profile";
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
+import Repo from "./components/repo/Repo";
+import Repository from "./components/Repository/Repository";
+import StarredRepo from "./components/StarredRepo/StarredRepo";
+import Issue from "./components/issue/Issue.jsx";
 
 //Auth Context
 import { useAuth } from "./authContext"; //stoes info of current logged in user
@@ -57,6 +61,22 @@ const ProjectRoutes = () => {
       path: "/profile",
       element: <Profile />,
     },
+    {
+      path:"/create",
+      element:<Repo/>
+    },
+    {
+      path:"/repo/:id",
+      element:<Repository/>
+    },
+    {
+      path:"/starred",
+      element:<StarredRepo/>
+    },
+    {
+      path:"/repo/:id/issues",
+      element:<Issue/>
+    }
   ]);
 
   return element;

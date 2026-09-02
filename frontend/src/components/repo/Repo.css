@@ -1,0 +1,138 @@
+.repo-page {
+  width: 70%;
+  margin: 30px auto;
+  text-align: left;
+}
+
+.repo-page h3{
+  font-size:2rem;
+}
+
+.repo-container {
+  width: 70%;
+  margin: 30px auto;
+  color: white;
+}
+
+.repo-container h3 {
+  font-size: 22px;
+  margin-bottom: 25px;
+}
+
+/* Owner + Repository name */
+.repo-name {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+/* Each field */
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field h4 {
+  margin-bottom: 8px;
+  color: white;
+}
+
+/* Owner box */
+.owner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 56px;
+  padding: 0 12px;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  background-color: #323131;
+}
+
+.owner img {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+}
+
+.owner h4 {
+  margin: 0;
+}
+
+
+.slash {
+  font-size: 25px;
+  color: #8b949e;
+  margin-bottom: 15px;
+}
+
+.repo-field {
+  flex: 1;
+}
+
+.repo-field .MuiTextField-root {
+  width: 100%;
+}
+
+/* Description */
+.description {
+  margin-top: 25px;
+}
+
+.description h4 {
+  margin-bottom: 8px;
+}
+
+.description p {
+  color: #8b949e;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.Configuration {
+  width: 68%;
+  margin: 30px auto;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.config-input {
+  margin: 0;
+}
+
+.config-text{
+  text-align: left;
+}
+
+.config-text h3{
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.config-text h4 {
+  margin-bottom: 5px;
+}
+
+.config-text p {
+  margin: 0;
+  color: #8b949e;
+  font-size: 13px;
+}
+
+.config-input menuitem{
+  background-color: #8b949e;
+}
+
+span h2{
+  margin-left:15%;
+}
+
+.repo-button{
+   display: block !important;
+  margin-left: auto !important;
+  margin-right: 15% !important;
+}

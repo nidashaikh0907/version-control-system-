@@ -11,10 +11,14 @@ async function createIssue(req, res) {
       title,
       description,
       repository: id,
+      createdBy: req.user.id,
     });
 
     const result = await newIssue.save();
-    res.json({ message: "issue created" }, result);
+    res.json({
+      message: "issue created",
+      issue: result,
+    });
   } catch (err) {
     console.error("error during creating issue!", err.message);
     res.status(500).send("server error!");
@@ -35,7 +39,10 @@ async function updateIssueById(req, res) {
 
     const updatedIssue = await Issue.save();
 
-    res.json({ message: "Issue updated successfully" }, updatedIssue);
+    res.json({
+      message: "Issue updated successfully",
+      issue: updatedIssue,
+    });
   } catch (err) {
     console.error("error during updating issue!", err.message);
     res.status(500).send("server error!");
@@ -44,16 +51,19 @@ async function updateIssueById(req, res) {
 
 async function getAllIssue(req, res) {
   const { id } = req.params;
+
   try {
     const issues = await Issue.find({
       repository: new mongoose.Types.ObjectId(id),
     });
-    if (issues.length == 0) {
-      return res.status(404).json({ message: "Issues not Found!" });
-    }
-    res.json({ message: "Found all Issues" }, issues);
+
+    res.json({
+      message: "Found all Issues",
+      issues: issues,
+    });
+
   } catch (err) {
-    console.error("error during fething issue!", err.message);
+    console.error("error during fetching issue!", err.message);
     res.status(500).send("server error!");
   }
 }
@@ -65,7 +75,10 @@ async function getIssueById(req, res) {
     if (!issue) {
       return res.status(404).json({ message: "Issue Not Found!" });
     }
-    res.json({ message: "Issue Fetched Successfully" }, issue);
+    res.json({
+      message: "Issue Fetched Successfully",
+      issue: issue,
+    });
   } catch (err) {
     console.error("error during fething issue!", err.message);
     res.status(500).send("server error!");
@@ -79,7 +92,10 @@ async function deleteIssue(req, res) {
     if (!deleteIssue) {
       return res.status(404).json({ message: "Issue Not Found!" });
     }
-    res.json({ message: "Issue Deleted Successfully" });
+    res.json({
+      message: "Issue Deleted Successfully",
+      issue: deleteIssue,
+    });
   } catch (err) {
     console.error("error during deleting issue!", err.message);
     res.status(500).send("server error!");

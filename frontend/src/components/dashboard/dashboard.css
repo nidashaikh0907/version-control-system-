@@ -1,5 +1,190 @@
-#dashboard{
-    display: flex;
-    justify-content: space-between;
+#dashboard {
+  display: flex;
+  justify-content: space-around;
+}
+
+.recent_repo {
+  display: flex;
+  align-items: center;
+}
+
+.recent_repo h4 {
+  margin-left: 15px;
+  color: white;
+}
+
+.left-side h3 {
+  font-size: 25px;
+  margin-left: 10px;
+  margin-top: -20px;
+}
+
+.profile {
+  height: 1.5rem;
+  border-radius: 100%;
+}
+
+.username {
+  display: flex;
+  margin-top: -30px;
+}
+
+.username h4 {
+  border: 1px solid white;
+  padding: 13px;
+  border-radius: 10px;
+}
+
+.username img {
+  margin-top: 10px;
+}
+
+.left-side {
+  margin-left: -20rem;
+  /* margin-top: -10px; */
+}
+
+.home-content {
+  border: 1px solid white;
+  height: 8rem;
+  width: 30rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  background-color: black;
+  margin-right: -15px;
+  padding: 10px;
+}
+
+.home-content:hover {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  transition: 0.2s;
+}
+
+.home-content h4 {
+  padding: 8px;
+  font-size: 21px;
+}
+
+.home-content h5 {
+  padding: 10px;
+  font-size: 15px;
+}
+
+.home-section h3 {
+  font-size: 35px;
+}
+
+.home-section {
+  margin-left: -20rem;
+
+}
+
+.right-side li {
+  border: 1px solid white;
+  height: 8rem;
+  width: 20rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  background-color: black;
+}
+
+.right-side a {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+}
+.right-side li:hover {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  transition: 0.2s;
+}
+
+.right-side h3 {
+  font-size: 30px;
+}
+.right-side li {
+  min-height: 8rem;
+  height: auto;
+  padding: 12px;
+  box-sizing: border-box;
+}
+.right-side small {
+  display: block;
+  margin-bottom: 10px;
+  color: #ccc;
+}
+
+.right-side button {
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+.right-side button:hover {
+  background-color: #ddd;
+}
+
+@media (max-width: 1200px) {
+  #dashboard {
+    flex-direction: column;
     align-items: center;
+    gap: 30px;
+  }
+
+  .left-side,
+  .home-section,
+  .right-side {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .home-content {
+    width: 90%;
+    max-width: 30rem;
+  }
+
+  .right-side li {
+    width: 90%;
+    max-width: 20rem;
+  }
+}
+
+.recent_repo h4:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+.visit-button {
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 14px;
+  cursor: pointer;
+  width: fit-content;
+  margin-top: auto;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+#repo-name {
+  display: flex;
+  align-items: center;
+}
+
+#repo-name button{
+  border-radius:100%;
+  background-color: #333;
+  color: white;
+  border: 1px solid white;
+  margin-left:auto;
+  margin-right: 10px;
+  font-size: 20px;
 }

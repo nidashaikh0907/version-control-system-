@@ -1,27 +1,61 @@
-nav{
-    display: flex;
+.logo {
+  width: 4rem;
+  border-radius: 100%;
+  margin-left: 10px;
+  margin-top: 8px;
+  margin-bottom:25px;
 }
 
-nav img{
-    width: 10%;
-    border-radius: 100%;
+.avtar {
+  width:2.9rem;
+  border-radius: 100%;
+  margin-top:10px;
+  margin-right: auto;
 }
 
-nav div{
-    display: flex;
+.navbar {
+  display: flex;
+  box-shadow: 0px 4px 12px rgba(77, 71, 71, 0.4);
+  border: 1px solid black;
+  height:6rem;
+  position: sticky;
 }
 
-nav h3{
-    margin-left:15px ;
+.logo-container h3 {
+  color: white;
+  margin-top: 29px;
+}
+
+.logo-container {
+  display: flex;
+  margin-top: 13px;
+  margin-left: 20px;
+  gap: 9px;
+}
+.navbar-option {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-left: auto;
+  margin-right: 40px;
+  margin-top: 20px;
+}
+
+.navbar-option p {
+    margin: 0;
     color: white;
+    margin-top: 10px;
 }
 
-nav p{
-    margin-left: 60px;
-    color: white;
-    text-decoration: none;
+.navbar p {
+  color: white;
 }
 
-nav h3:hover,nav p:hover{
+.navbar a {
+  text-decoration: none;
+}
+
+.navbar a:hover{
     text-decoration: underline;
+    color: white;
 }

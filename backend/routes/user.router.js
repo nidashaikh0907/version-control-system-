@@ -9,6 +9,7 @@ userRouter.post("/signup", userController.signup);
 userRouter.post("/login", userController.login);
 userRouter.put("/userprofile/:id", userController.getUserProfile);
 userRouter.put("/updateprofile/:id", userController.updateUserProfile);
+userRouter.post("/user/:id/starred",userController.getStarredRepositories);
 userRouter.delete("/deleteprofile/:id", userController.deleteUserProfile);
 
 module.exports= userRouter;

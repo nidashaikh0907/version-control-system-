@@ -18,7 +18,6 @@ const Signup = () => {
   const handleSignUp = async (e) => {
     //establish signup endpoint
     e.preventDefault();
-    console.error("HANDLE SIGNUP CALLED");
     try {
       setLoading(true);
       const result = await axios.post("http://localhost:3000/signup", {
@@ -26,14 +25,8 @@ const Signup = () => {
         password: password,
         username: username,
       });
-
-      console.error(" BACKEND RESULT:", result.data);
-
       localStorage.setItem("token", result.data.token);
       localStorage.setItem("userId", result.data.userId);
-      console.log("token saved:", localStorage.getItem("token"));
-      console.log("user Id saved:", localStorage.getItem("userId"));
-
       setCurrentUser(result.data.userId);
       setLoading(false);
 
@@ -50,7 +43,6 @@ const Signup = () => {
         <img className="logo" src={logo} alt="logo" />
         <br />
         <h3>Sign Up</h3>
-        <br />
         <br />
       </div>
 
@@ -149,12 +141,13 @@ const Signup = () => {
         </Button>
       </div>
       <br />
-      <br />
+
       <div className="pass-box">
         <p>
-          Already have an account? <Link to="/auth">Sign In</Link>
+          Already have an account? <Link to="/auth">Login In</Link>
         </p>
       </div>
+      <br />
     </div>
   );
 };

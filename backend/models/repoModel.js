@@ -12,7 +12,7 @@ const RepositorySchema = new Schema({
   },
   content: [
     {
-      type: String,
+      type: String
     },
   ],
   visibility: {
@@ -29,7 +29,11 @@ const RepositorySchema = new Schema({
       ref: "Issue",
     },
   ],
-});
+},
+{
+  timestamps:true,
+}
+);
 
 const Repository =
   mongoose.models.Repository ||

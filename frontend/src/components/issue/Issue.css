@@ -1,0 +1,126 @@
+.issue-page {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.issue-header {
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: rgb(30, 29, 29);
+    margin-top: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.issue-header h1 {
+    margin: 0;
+}
+
+.issue-header p {
+    margin-top: 5px;
+}
+
+.issue-header-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.create-issue-box {
+    border: 1px solid white;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: rgb(30, 29, 29);
+}
+
+.create-issue-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.create-issue-box input,
+.create-issue-box textarea {
+    padding: 10px;
+    background-color: rgb(30, 29, 29);
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+.create-issue-box textarea {
+    height: 100px;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.issues-container {
+    border: 1px solid white;
+    border-radius: 10px;
+    margin-top: 20px;
+    background-color: rgb(30, 29, 29);
+}
+
+.issues-title {
+    padding: 10px 20px;
+    border-bottom: 1px solid white;
+}
+
+.issue-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    border-bottom: 1px solid gray;
+}
+
+.issue-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.issue-title-row i {
+    color: green;
+}
+
+.issue-description {
+    margin-left: 30px;
+    color: rgb(190, 190, 190);
+}
+
+
+.issue-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+
+.status-open {
+    border: 2px solid green;
+    padding: 5px 10px;
+    background-color: rgb(30, 58, 30);
+    border-radius: 50px;
+    color: rgb(221, 232, 221);
+}
+
+
+.no-issues {
+    text-align: center;
+    padding: 40px;
+}
+
+.no-issues i {
+    font-size: 35px;
+}
+
+.no-issues p {
+    color: gray;
+}

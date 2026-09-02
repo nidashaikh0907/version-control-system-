@@ -12,7 +12,7 @@ const Login = () => {
   const [Email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const { currentUser, setCurrentUser } = useAuth();
+  const { currentUser, setCurrentUser,username,setUsername } = useAuth();
 
   const handleLogin = async (e) => {
     //establish signup endpoint
@@ -26,8 +26,10 @@ const Login = () => {
 
       localStorage.setItem("token", result.data.token);
       localStorage.setItem("userId", result.data.userId);
+      localStorage.setItem("username",result.data.username);
 
       setCurrentUser(result.data.userId);
+      setUsername(result.data.username);
       setLoading(false);
 
       window.location.href = "/";
@@ -45,7 +47,6 @@ const Login = () => {
         <br />
         <h1>Login</h1>
       </div>
-      <br />
       <br />
       <div className="signup-form">
         <TextField
@@ -95,7 +96,7 @@ const Login = () => {
           color="success"
           disabled={loading}
           onClick={handleLogin}
-           sx={{
+          sx={{
             backgroundColor: "#238636",
             color: "white",
 
@@ -114,10 +115,10 @@ const Login = () => {
         </Button>
       </div>
       <br />
-      <br />
+
       <p className="pass-box">
         New to GitHub? <Link to="/signup">Create an account</Link>
-      </p>
+      </p><br/>
     </div>
   );
 };
