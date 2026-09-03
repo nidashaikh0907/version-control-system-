@@ -20,11 +20,14 @@ const Signup = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const result = await axios.post(`${import.meta.env.VITE_API_URL}/signup`, {
-        email: email,
-        password: password,
-        username: username,
-      });
+      const result = await axios.post(
+        `${import.meta.env.VITE_API_URL}/signup`,
+        {
+          email: email,
+          password: password,
+          username: username,
+        },
+      );
       localStorage.setItem("token", result.data.token);
       localStorage.setItem("userId", result.data.userId);
       setCurrentUser(result.data.userId);
@@ -60,9 +63,17 @@ const Signup = () => {
               color: "white",
               WebkitTextFillColor: "white",
             },
+
+            "& input:-webkit-autofill": {
+              WebkitBoxShadow: "0 0 0 1000px #000 inset",
+              WebkitTextFillColor: "white",
+              caretColor: "white",
+            },
+
             "& label": {
               color: "white",
             },
+
             "& fieldset": {
               borderColor: "white",
             },
@@ -83,9 +94,17 @@ const Signup = () => {
               color: "white",
               WebkitTextFillColor: "white",
             },
+
+            "& input:-webkit-autofill": {
+              WebkitBoxShadow: "0 0 0 1000px #000 inset",
+              WebkitTextFillColor: "white",
+              caretColor: "white",
+            },
+
             "& label": {
               color: "white",
             },
+
             "& fieldset": {
               borderColor: "white",
             },
@@ -97,6 +116,7 @@ const Signup = () => {
           className="input-form"
           id="outlined-basic"
           label="Password"
+          type="password"
           variant="outlined"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -106,9 +126,17 @@ const Signup = () => {
               color: "white",
               WebkitTextFillColor: "white",
             },
+
+            "& input:-webkit-autofill": {
+              WebkitBoxShadow: "0 0 0 1000px #000 inset",
+              WebkitTextFillColor: "white",
+              caretColor: "white",
+            },
+
             "& label": {
               color: "white",
             },
+
             "& fieldset": {
               borderColor: "white",
             },

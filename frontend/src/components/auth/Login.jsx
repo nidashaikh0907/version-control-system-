@@ -12,7 +12,7 @@ const Login = () => {
   const [Email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const { currentUser, setCurrentUser,username,setUsername } = useAuth();
+  const { currentUser, setCurrentUser, username, setUsername } = useAuth();
 
   const handleLogin = async (e) => {
     //establish signup endpoint
@@ -26,7 +26,7 @@ const Login = () => {
 
       localStorage.setItem("token", result.data.token);
       localStorage.setItem("userId", result.data.userId);
-      localStorage.setItem("username",result.data.username);
+      localStorage.setItem("username", result.data.username);
 
       setCurrentUser(result.data.userId);
       setUsername(result.data.username);
@@ -60,9 +60,17 @@ const Login = () => {
               color: "white",
               WebkitTextFillColor: "white",
             },
+
+            "& input:-webkit-autofill": {
+              WebkitBoxShadow: "0 0 0 1000px #000 inset",
+              WebkitTextFillColor: "white",
+              caretColor: "white",
+            },
+
             "& label": {
               color: "white",
             },
+
             "& fieldset": {
               borderColor: "white",
             },
@@ -71,19 +79,30 @@ const Login = () => {
         <br />
         <br />
         <TextField
+          className="input-form"
           id="outlined-basic"
-          label="password"
+          label="Password"
+          type="password"
           variant="outlined"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
           sx={{
             "& input": {
               color: "white",
               WebkitTextFillColor: "white",
             },
+
+            "& input:-webkit-autofill": {
+              WebkitBoxShadow: "0 0 0 1000px #000 inset",
+              WebkitTextFillColor: "white",
+              caretColor: "white",
+            },
+
             "& label": {
               color: "white",
             },
+
             "& fieldset": {
               borderColor: "white",
             },
@@ -118,7 +137,8 @@ const Login = () => {
 
       <p className="pass-box">
         New to GitHub? <Link to="/signup">Create an account</Link>
-      </p><br/>
+      </p>
+      <br />
     </div>
   );
 };
