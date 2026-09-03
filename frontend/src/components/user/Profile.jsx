@@ -83,7 +83,7 @@ const Profile = () => {
    
       <div className="profile-option">
         <h3>
-          <i className="fa-solid fa-book-open"></i>
+          <i className="fa-solid fa-book-open"></i>  
           &nbsp; Overview
         </h3>
 

@@ -16,7 +16,6 @@ const Issue = () => {
 
   const token = localStorage.getItem("token");
 
-  // Display issues
   const fetchIssues = async () => {
     try {
       const response = await axios.get(
@@ -75,7 +74,6 @@ const Issue = () => {
     }
   };
 
-  // Delete issue
   const handleDeleteIssue = async (issueId) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this issue?",
@@ -128,7 +126,6 @@ const Issue = () => {
           </div>
         </div>
 
-        {/* Create Issue Form */}
         {showForm && (
           <div className="create-issue-box">
             <h2>Create New Issue</h2>
@@ -168,7 +165,6 @@ const Issue = () => {
           </div>
         )}
 
-        {/* Issues */}
         <div className="issues-container">
           <div className="issues-title"><br/>
             <h2>

@@ -1,190 +1,585 @@
+
 #dashboard {
-  display: flex;
-  justify-content: space-around;
-}
+  width: 100%;
+  min-height: calc(100vh - 70px);
 
-.recent_repo {
-  display: flex;
-  align-items: center;
-}
+  display: grid;
 
-.recent_repo h4 {
-  margin-left: 15px;
+  grid-template-columns:
+    minmax(200px, 1fr)
+    minmax(450px, 2fr)
+    minmax(280px, 1fr);
+
+  gap: 35px;
+
+  padding: 35px 40px;
+
+  box-sizing: border-box;
+
   color: white;
 }
 
-.left-side h3 {
-  font-size: 25px;
-  margin-left: 10px;
-  margin-top: -20px;
-}
 
-.profile {
-  height: 1.5rem;
-  border-radius: 100%;
+.left-side {
+  width: 100%;
+  min-width: 0;
 }
 
 .username {
   display: flex;
-  margin-top: -30px;
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 45px;
+}
+
+.username-avatar {
+  width: 45px;
+  height: 45px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  display: block;
+
+  flex-shrink: 0;
 }
 
 .username h4 {
+  margin: 0;
+
+  padding: 10px 14px;
+
   border: 1px solid white;
-  padding: 13px;
+
   border-radius: 10px;
+
+  color: white;
+
+  font-size: 16px;
 }
 
-.username img {
-  margin-top: 10px;
+
+.section-title {
+  font-size: 25px;
+
+  margin: 0 0 15px 0;
 }
 
-.left-side {
-  margin-left: -20rem;
-  /* margin-top: -10px; */
+
+#search {
+  width: 100%;
+
+  margin-bottom: 25px;
 }
+
+#search > div {
+  min-height: 45px;
+
+  border-radius: 8px;
+}
+
+
+
+.recent-repositories {
+  width: 100%;
+}
+
+.recent_repo {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 8px 5px;
+
+  margin-bottom: 12px;
+
+  cursor: pointer;
+
+  border-radius: 6px;
+
+  transition: 0.2s;
+}
+
+.recent_repo:hover {
+  background-color: #1c1f26;
+}
+
+.repo-avatar {
+  width: 35px;
+  height: 35px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  display: block;
+
+  flex-shrink: 0;
+}
+
+.recent_repo h4 {
+  margin: 0;
+
+  color: white;
+
+  font-size: 16px;
+
+  word-break: break-word;
+}
+
+.recent_repo h4:hover {
+  text-decoration: underline;
+}
+
+.no-repo {
+  color: #aaa;
+}
+
+
+
+.home-section {
+  width: 100%;
+  min-width: 0;
+}
+
+.home-section > h3 {
+  font-size: 35px;
+
+  margin: 0 0 25px 0;
+}
+
+
 
 .home-content {
+  width: 100%;
+
+  min-height: 150px;
+
+  box-sizing: border-box;
+
   border: 1px solid white;
-  height: 8rem;
-  width: 30rem;
+
   border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
+
   background-color: black;
-  margin-right: -15px;
-  padding: 10px;
+
+  padding: 15px;
+
+  margin-bottom: 12px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  transition: 0.2s;
 }
 
 .home-content:hover {
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.25);
+
   transform: translateY(-2px);
-  transition: 0.2s;
 }
 
-.home-content h4 {
-  padding: 8px;
-  font-size: 21px;
+
+
+#repo-name {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
 }
+
+#repo-name h4 {
+  margin: 0;
+
+  padding: 5px;
+
+  font-size: 21px;
+
+  word-break: break-word;
+}
+
+
+.star-button {
+  margin-left: auto;
+
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background-color: #333;
+
+  color: white;
+
+  border: 1px solid white;
+
+  font-size: 20px;
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+.star-button:hover {
+  background-color: #555;
+}
+
 
 .home-content h5 {
-  padding: 10px;
+  padding: 5px;
+
+  margin: 5px 0;
+
   font-size: 15px;
+
+  line-height: 1.5;
+
+  color: #ddd;
+
+  font-weight: normal;
+
+  word-break: break-word;
 }
 
-.home-section h3 {
-  font-size: 35px;
+
+
+.visit-button {
+  background-color: white;
+
+  color: black;
+
+  border: none;
+
+  border-radius: 5px;
+
+  padding: 6px 14px;
+
+  cursor: pointer;
+
+  width: fit-content;
+
+  margin-top: auto;
+
+  margin-left: 5px;
 }
 
-.home-section {
-  margin-left: -20rem;
-
+.visit-button:hover {
+  background-color: #ddd;
 }
+
+
+.right-side {
+  width: 100%;
+
+  min-width: 0;
+}
+
+.right-side > h3 {
+  font-size: 30px;
+
+  margin: 0 0 25px 0;
+}
+
+
+
+.right-side ul {
+  list-style: none;
+
+  padding: 0;
+
+  margin: 0;
+}
+
+
 
 .right-side li {
-  border: 1px solid white;
-  height: 8rem;
-  width: 20rem;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
-  background-color: black;
-}
+  width: 100%;
 
-.right-side a {
-  text-decoration: none;
-  color: white;
-  padding: 10px;
-}
-.right-side li:hover {
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.25);
-  transform: translateY(-2px);
+  min-height: 150px;
+
+  box-sizing: border-box;
+
+  border: 1px solid white;
+
+  border-radius: 10px;
+
+  background-color: black;
+
+  margin-bottom: 12px;
+
   transition: 0.2s;
 }
 
-.right-side h3 {
-  font-size: 30px;
+.right-side li:hover {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.25);
+
+  transform: translateY(-2px);
 }
-.right-side li {
-  min-height: 8rem;
-  height: auto;
-  padding: 12px;
+
+
+.right-side a {
+  display: flex;
+
+  flex-direction: column;
+
+  height: 100%;
+
   box-sizing: border-box;
+
+  text-decoration: none;
+
+  color: white;
+
+  padding: 15px;
 }
+
+
+.right-side h4 {
+  margin: 0 0 5px 0;
+
+  font-size: 17px;
+
+  line-height: 1.3;
+}
+
+
+.right-side p {
+  margin: 0 0 15px 0;
+
+  font-size: 14px;
+}
+
+
 .right-side small {
   display: block;
-  margin-bottom: 10px;
+
+  margin-bottom: 12px;
+
   color: #ccc;
+
+  font-size: 13px;
+
+  line-height: 1.4;
 }
+
+
 
 .right-side button {
   background-color: white;
+
   color: black;
+
   border: none;
+
   border-radius: 5px;
+
   padding: 6px 14px;
+
   cursor: pointer;
+
+  width: fit-content;
+
+  margin-top: auto;
 }
 
 .right-side button:hover {
   background-color: #ddd;
 }
 
+
+
 @media (max-width: 1200px) {
+
   #dashboard {
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
+    grid-template-columns:
+      200px
+      minmax(400px, 1fr)
+      280px;
+
+    gap: 25px;
+
+    padding: 30px;
   }
+
+  .home-content {
+    min-height: 145px;
+  }
+
+  .right-side li {
+    min-height: 145px;
+  }
+}
+
+
+
+@media (max-width: 950px) {
+
+  #dashboard {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 30px;
+
+    padding: 25px;
+  }
+
+  .left-side {
+    grid-column: 1 / 2;
+  }
+
+  .home-section {
+    grid-column: 2 / 3;
+  }
+
+  .right-side {
+    grid-column: 1 / 3;
+
+    width: 100%;
+  }
+
+  .right-side ul {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+  }
+
+  .right-side li {
+    margin-bottom: 0;
+  }
+}
+
+
+
+@media (max-width: 650px) {
+
+  #dashboard {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 30px;
+
+    padding: 20px 15px;
+  }
+
+
+  /* LEFT */
 
   .left-side,
   .home-section,
   .right-side {
-    margin-left: 0;
-    margin-right: 0;
+    width: 100%;
+  }
+
+
+  /* USER */
+
+  .username {
+    margin-bottom: 30px;
+  }
+
+  .username-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+
+  /* HOME */
+
+  .home-section > h3 {
+    font-size: 28px;
   }
 
   .home-content {
-    width: 90%;
-    max-width: 30rem;
+    width: 100%;
+
+    min-height: 145px;
+  }
+
+  #repo-name h4 {
+    font-size: 18px;
+  }
+
+
+  /* EVENTS */
+
+  .right-side > h3 {
+    font-size: 27px;
+  }
+
+  .right-side ul {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0;
   }
 
   .right-side li {
-    width: 90%;
-    max-width: 20rem;
+    width: 100%;
+
+    margin-bottom: 12px;
   }
 }
 
-.recent_repo h4:hover{
-  text-decoration: underline;
-  cursor: pointer;
-}
-.visit-button {
-  background-color: white;
-  color: black;
-  border: none;
-  border-radius: 5px;
-  padding: 6px 14px;
-  cursor: pointer;
-  width: fit-content;
-  margin-top: auto;
-  margin-bottom: 10px;
-  margin-left: 10px;
-}
 
-#repo-name {
-  display: flex;
-  align-items: center;
-}
 
-#repo-name button{
-  border-radius:100%;
-  background-color: #333;
-  color: white;
-  border: 1px solid white;
-  margin-left:auto;
-  margin-right: 10px;
-  font-size: 20px;
+@media (max-width: 400px) {
+
+  #dashboard {
+    padding: 15px 10px;
+  }
+
+  .username {
+    gap: 10px;
+  }
+
+  .username h4 {
+    font-size: 14px;
+
+    padding: 8px 10px;
+  }
+
+  .section-title {
+    font-size: 22px;
+  }
+
+  .home-section > h3 {
+    font-size: 25px;
+  }
+
+  .right-side > h3 {
+    font-size: 24px;
+  }
+
+  .home-content {
+    padding: 12px;
+  }
+
+  #repo-name h4 {
+    font-size: 16px;
+  }
+
+  .star-button {
+    width: 35px;
+    height: 35px;
+
+    font-size: 17px;
+  }
 }

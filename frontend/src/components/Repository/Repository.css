@@ -1,9 +1,8 @@
 .user-details {
     border: 1px solid white;
     border-radius: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
-    padding: 10px;
+    margin: 20px;
+    padding: 15px;
     background-color: rgb(30, 29, 29);
 }
 
@@ -11,6 +10,11 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    flex-wrap: wrap;
+}
+
+.title h1 {
+    margin: 0;
 }
 
 .title h3 {
@@ -18,39 +22,42 @@
     padding: 5px;
     background-color: rgb(30, 58, 30);
     border-radius: 50px;
-    margin-right: 10px;
     width: 60px;
     text-align: center;
     color: rgb(221, 232, 221);
+    margin: 0;
 }
 
 #description {
     margin-bottom: 10px;
+    word-wrap: break-word;
 }
 
-.owner-details {
+.owner-details,
+.repo-date {
     display: flex;
     align-items: center;
     gap: 8px;
     margin-bottom: 10px;
 }
 
-.repo-date {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.owner-details p,
+.repo-date p {
+    margin: 0;
 }
+
+/* Upload section */
 
 .upload-file {
     border: 2px dotted white;
     border-radius: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
-    padding: 10px;
+    margin: 20px;
+    padding: 20px;
     background-color: rgb(30, 29, 29);
     display: flex;
     align-items: center;
     flex-direction: column;
+    text-align: center;
 }
 
 .upload-file input[type="file"] {
@@ -65,11 +72,12 @@
     margin-bottom: 8px;
 }
 
+/* Files */
+
 .files-section {
     border: 1px solid white;
     border-radius: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin: 20px;
     padding: 5px;
     background-color: rgb(30, 29, 29);
 }
@@ -78,8 +86,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 2px;
-    padding: 0 20px;
+    padding: 10px 20px;
+    gap: 15px;
 }
 
 .files-topsection h1 {
@@ -104,12 +112,105 @@
 }
 
 .file-item {
-    display: block !important;
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
     width: 100%;
     padding: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.file-item:hover {
+    background-color: rgb(45, 44, 44);
 }
 
 .user-delete {
     margin-left: auto !important;
-    margin-top: 10px;
+    margin-top: 0;
+}
+
+/* Tablet */
+
+@media (max-width: 768px) {
+
+    .user-details,
+    .files-section,
+    .upload-file {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .files-topsection {
+        padding: 10px;
+    }
+
+    .file-list {
+        margin: 10px;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 500px) {
+
+    .user-details {
+        margin: 10px;
+        padding: 12px;
+    }
+
+    .title {
+        align-items: flex-start;
+    }
+
+    .title h1 {
+        font-size: 24px;
+    }
+
+    .title h3 {
+        font-size: 12px;
+        width: 55px;
+    }
+
+    .user-delete {
+        width: 100%;
+        margin-top: 10px !important;
+    }
+
+    .files-section {
+        margin: 10px;
+    }
+
+    .files-topsection {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .files-topsection h1 {
+        font-size: 24px;
+    }
+
+    .files-buttons {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .files-buttons button {
+        width: 100%;
+    }
+
+    .file-list {
+        margin: 10px;
+        padding: 5px;
+    }
+
+    .file-item {
+        padding: 12px 8px;
+        word-break: break-word;
+    }
+
+    .upload-file {
+        margin: 10px;
+        padding: 15px;
+    }
 }
