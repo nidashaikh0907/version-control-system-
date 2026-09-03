@@ -26,7 +26,7 @@ const Profile = () => {
 
       try {
         const response = await axios.put(
-          `http://localhost:3000/userprofile/${userId}`,
+          `${import.meta.env.VITE_API_URL}/userprofile/${userId}`,
         );
 
         setUserDetails(response.data);
@@ -49,7 +49,7 @@ const Profile = () => {
 
       try {
         const response = await axios.get(
-          `http://localhost:3000/repo/user/${userId}`,
+          `${import.meta.env.VITE_API_URL}/repo/user/${userId}`,
         );
         setRepositories(response.data.repositories || []);
       } catch (error) {

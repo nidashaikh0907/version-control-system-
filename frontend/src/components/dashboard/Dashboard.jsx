@@ -13,7 +13,6 @@ const Dashboard = () => {
   const { currentUser, setCurrentUser, username, setUsername } = useAuth();
   const navigate = useNavigate();
 
-
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
@@ -40,15 +39,11 @@ const Dashboard = () => {
     },
   }));
 
-
-
   const [repositories, setRepositories] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestedRepositories, setSuggestedRepositories] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [userDetails, setUserDetails] = useState({});
-
-
 
   useEffect(() => {
     const fetchRepositories = async () => {
@@ -58,7 +53,7 @@ const Dashboard = () => {
 
       try {
         const response = await fetch(
-          `http://localhost:3000/repo/user/${userId}`
+          `${import.meta.env.VITE_API_URL}/repo/user/${userId}`,
         );
 
         const data = await response.json();
@@ -74,12 +69,11 @@ const Dashboard = () => {
     fetchRepositories();
   }, []);
 
-
   useEffect(() => {
     const fetchSuggestedRepositories = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/repo/all"
+          `${import.meta.env.VITE_API_URL}/repo/all`,
         );
 
         const data = await response.json();
@@ -93,7 +87,6 @@ const Dashboard = () => {
     fetchSuggestedRepositories();
   }, []);
 
-
   useEffect(() => {
     const fetchUserDetails = async () => {
       const userId = localStorage.getItem("userId");
@@ -102,7 +95,7 @@ const Dashboard = () => {
 
       try {
         const response = await axios.put(
-          `http://localhost:3000/userprofile/${userId}`
+          `${import.meta.env.VITE_API_URL}/userprofile/${userId}`,
         );
 
         setUserDetails(response.data);
@@ -114,35 +107,30 @@ const Dashboard = () => {
     fetchUserDetails();
   }, []);
 
-
   useEffect(() => {
     if (searchQuery.trim() === "") {
       setSearchResults(repositories);
     } else {
       const filteredRepo = repositories.filter((repo) =>
-        repo.name
-          .toLowerCase()
-          .includes(searchQuery.toLowerCase())
+        repo.name.toLowerCase().includes(searchQuery.toLowerCase()),
       );
 
       setSearchResults(filteredRepo);
     }
   }, [searchQuery, repositories]);
 
-
-
   const handleStar = async (repoId) => {
     try {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        `http://localhost:3000/repo/${repoId}/star`,
+        `${import.meta.env.VITE_API_URL}/repo/${repoId}/star`,
         {},
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       alert("Repository starred successfully!");
@@ -152,8 +140,6 @@ const Dashboard = () => {
       alert("Could not star repository");
     }
   };
-
-
 
   const upcomingEvents = [
     {
@@ -197,39 +183,24 @@ const Dashboard = () => {
     },
   ];
 
-
-
   return (
     <>
       <Navbar />
 
       <section id="dashboard">
-
-
         <main className="left-side">
-
           <div className="username">
-
-            <img
-              src={profile}
-              className="username-avatar"
-              alt="profile"
-            />
+            <img src={profile} className="username-avatar" alt="profile" />
 
             <h4>{userDetails.username}</h4>
-
           </div>
 
-          <h3 className="section-title">
-            Recent
-          </h3>
+          <h3 className="section-title">Recent</h3>
 
           {/* SEARCH */}
 
           <div id="search">
-
             <Search>
-
               <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>
@@ -237,152 +208,83 @@ const Dashboard = () => {
               <StyledInputBase
                 placeholder="Search..."
                 value={searchQuery}
-                onChange={(e) =>
-                  setSearchQuery(e.target.value)
-                }
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
-
             </Search>
-
           </div>
 
-
           <div className="recent-repositories">
-
             {searchResults.length > 0 ? (
-
               searchResults.map((repo) => (
-
                 <div
                   key={repo._id}
                   className="recent_repo"
-                  onClick={() =>
-                    navigate(`/repo/${repo._id}`)
-                  }
+                  onClick={() => navigate(`/repo/${repo._id}`)}
                 >
-
-                  <img
-                    src={profile}
-                    className="repo-avatar"
-                    alt="repository"
-                  />
+                  <img src={profile} className="repo-avatar" alt="repository" />
 
                   <h4>{repo.name}</h4>
-
                 </div>
-
               ))
-
             ) : (
-
-              <p className="no-repo">
-                No repositories found.
-              </p>
-
+              <p className="no-repo">No repositories found.</p>
             )}
-
           </div>
-
         </main>
 
-
         <aside className="home-section">
-
           <h3>Home</h3>
 
           <div className="home-repositories">
-
             {suggestedRepositories.length > 0 ? (
-
               suggestedRepositories.map((repo) => (
-
-                <div
-                  key={repo._id}
-                  className="home-content"
-                >
-
+                <div key={repo._id} className="home-content">
                   <div id="repo-name">
-
                     <h4>{repo.name}</h4>
 
                     <button
                       className="star-button"
-                      onClick={() =>
-                        handleStar(repo._id)
-                      }
+                      onClick={() => handleStar(repo._id)}
                     >
                       ⭐
                     </button>
-
                   </div>
 
-                  <h5>
-                    {repo.description ||
-                      "No description available"}
-                  </h5>
+                  <h5>{repo.description || "No description available"}</h5>
 
                   <button
-                    onClick={() =>
-                      navigate(`/repo/${repo._id}`)
-                    }
+                    onClick={() => navigate(`/repo/${repo._id}`)}
                     className="visit-button"
                   >
                     Visit
                   </button>
-
                 </div>
-
               ))
-
             ) : (
-
               <p>No repositories available.</p>
-
             )}
-
           </div>
-
         </aside>
 
-
         <aside className="right-side">
-
           <h3>Upcoming Events</h3>
 
           <ul>
-
             {upcomingEvents.map((event, index) => (
-
               <li key={index}>
-
-                <a
-                  href={event.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-
+                <a href={event.link} target="_blank" rel="noopener noreferrer">
                   <h4>{event.title}</h4>
 
                   <p>{event.date}</p>
 
-                  <small>
-                    {event.description}
-                  </small>
+                  <small>{event.description}</small>
 
-                  <button>
-                    Visit
-                  </button>
-
+                  <button>Visit</button>
                 </a>
-
               </li>
-
             ))}
-
           </ul>
-
         </aside>
-
       </section>
     </>
   );

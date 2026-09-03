@@ -30,7 +30,7 @@ const Repo = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:3000/repo/create", {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/repo/create`, {
         owner: userId,
         name: repoDetails.name,
         description: repoDetails.description,
@@ -51,7 +51,7 @@ const Repo = () => {
       if (userId) {
         try {
           const response = await axios.put(
-            `http://localhost:3000/userprofile/${userId}`,
+            `${import.meta.env.VITE_API_URL}/userprofile/${userId}`,
           );
           setUserDetails(response.data);
         } catch (err) {

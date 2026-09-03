@@ -19,7 +19,7 @@ const Issue = () => {
   const fetchIssues = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/issue/all/${id}`,
+        `${import.meta.env.VITE_API_URL}/issue/all/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -49,7 +49,7 @@ const Issue = () => {
 
     try {
       await axios.post(
-        `http://localhost:3000/issue/create/${id}`,
+        `${import.meta.env.VITE_API_URL}/issue/create/${id}`,
         {
           title: title,
           description: description,
@@ -84,7 +84,7 @@ const Issue = () => {
     }
 
     try {
-      await axios.delete(`http://localhost:3000/issue/delete/${issueId}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/issue/delete/${issueId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

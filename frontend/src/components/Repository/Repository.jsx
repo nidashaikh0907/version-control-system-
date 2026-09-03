@@ -32,7 +32,7 @@ const Repository = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:3000/repo/${id}/upload`,
+        `${import.meta.env.VITE_API_URL}/repo/${id}/upload`,
         formData,
       );
 
@@ -54,7 +54,7 @@ const Repository = () => {
     }
 
     try {
-      await axios.delete(`http://localhost:3000/repo/delete/${id}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/repo/delete/${id}`);
       alert("Repository deleted successfully");
       window.location.href = "/";
     } catch (error) {
@@ -66,7 +66,7 @@ const Repository = () => {
   useEffect(() => {
     const fetchRepository = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/repo/${id}`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/repo/${id}`);
         setRepository(response.data);
         const content = response.data.content || [];
 

@@ -14,7 +14,7 @@ const starredRepo = () => {
       if (userId) {
         try {
           const response = await axios.post(
-            `http://localhost:3000/user/${userId}/starred`,
+            `${import.meta.env.VITE_API_URL}/user/${userId}/starred`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
